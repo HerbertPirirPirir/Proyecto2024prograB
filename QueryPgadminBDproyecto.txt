@@ -1,0 +1,29 @@
+CREATE TABLE usuario (
+    idusuario  varchar(25),
+    nombre VARCHAR(255) NOT NULL,
+    direccion VARCHAR(255),
+    telefono VARCHAR(50),
+    idNumero VARCHAR(50),
+	PRIMARY KEY (idusuario)
+);
+
+CREATE TABLE libros (
+    idlibro VARCHAR (50),
+    isbn    VARCHAR (50),
+    titulo  VARCHAR (255) NOT NULL,
+    autor   VARCHAR (255),
+    aniopublicacion INT,
+    editorial VARCHAR(255),
+    cantidaddisponible varchar(4),
+	PRIMARY KEY (isbn)
+);
+
+CREATE TABLE prestamo (
+    idprestamo VARCHAR (50),
+    idusuario VARCHAR REFERENCES usuario(idusuario),
+    idlibro VARCHAR(50) REFERENCES libros(isbn),
+    fechaprestamo TIMESTAMP NOT NULL,
+    fechadevolucion TIMESTAMP,
+    multa FLOAT,
+	PRIMARY KEY (idprestamo)
+);
